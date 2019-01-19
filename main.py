@@ -23,7 +23,7 @@ def search():
 def add():
     if not request or not request.json:
         abort(400)
-    # engine.addRecord(request.json)
+    engine.addRecord(request.json)
     return jsonify(success=True)
 
 if __name__ == '__main__':
