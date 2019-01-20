@@ -91,66 +91,18 @@ def constructWebhookResponse(results):
         ],
         "source": "hackaz-229118.appspot.com/",
         "payload": {
-            "google":{
-                "conversationToken": "[\"_actions_on_google_\"]",
-                "expectUserResponse": True,
-                "expectedInputs": [
-                    {
-                    "inputPrompt": {
-                        "richInitialPrompt": {
-                        "items": [
-                            {
-                            "simpleResponse": {
-                                "textToSpeech": "Alright! Here are a few jobs you might want to check out."
-                            }
-                            },
-                            {
-                            "carouselBrowse": {
-                                "items": [
-                                {
-                                    "title": "Title of item 1",
-                                    "description": "Description of item 1",
-                                    "footer": "Item 1 footer",
-                                    "image": {
-                                    "url": "https://www.gstatic.com/mobilesdk/170329_assistant/assistant_color_96dp.png",
-                                    "accessibilityText": "Google Assistant Bubbles"
-                                    },
-                                    "openUrlAction": {
-                                    "url": "https://github.com"
-                                    }
-                                },
-                                {
-                                    "title": "Title of item 2",
-                                    "description": "Description of item 2",
-                                    "footer": "Item 2 footer",
-                                    "image": {
-                                    "url": "https://www.gstatic.com/mobilesdk/170329_assistant/assistant_color_96dp.png",
-                                    "accessibilityText": "Google Assistant Bubbles"
-                                    },
-                                    "openUrlAction": {
-                                    "url": "https://google.com"
-                                    }
-                                }
-                                ]
-                            }
-                            }
-                        ]
+            "google":{  
+                "expectUserResponse":True,
+                "richResponse":{  
+                    "items":[  
+                    {  
+                        "carouselBrowse":{  
+                            "items":recommendations
                         }
-                    },
-                    "possibleIntents": [
-                        {
-                        "intent": "assistant.intent.action.TEXT"
-                        }
+                    }
                     ]
-                    }
-                ],
-                "responseMetadata": {
-                    "status": {},
-                    "queryMatchInfo": {
-                    "queryMatched": true,
-                    "intent": "74c61f1c-8d79-4c07-a2c5-84e20ebd3d16"
-                    }
-                }
+                },
+                "userStorage":"{\"data\":{}}"
             }
         }
     }
