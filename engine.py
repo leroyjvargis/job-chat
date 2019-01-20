@@ -97,7 +97,8 @@ def constructWebhookResponse(results):
                     "items":[
                         {
                             "simpleResponse": {
-                                "textToSpeech": "Alright! Here are a few web jobs you might want to check out."
+                                "textToSpeech": "Alright! Here are a few web jobs you might want to check out.",
+                                "displayText": "Alright! Here are a few web jobs you might want to check out."
                             }
                         },
 
