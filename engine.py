@@ -37,6 +37,23 @@ def constructWebhookResponse():
         recommendations.append(obj)
         
     response = {
+        "fulfillmentText": "This is the recommendation list",
+        "fulfillmentMessages": [
+            {
+            "card": {
+                "title": "card title",
+                "subtitle": "card text",
+                "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+                "buttons": [
+                {
+                    "text": "button text",
+                    "postback": "https://assistant.google.com/"
+                }
+                ]
+            }
+            }
+        ],
+        "source": "hackaz-229118.appspot.com/",
         "payload": {
             "google": {
                 "expectUserResponse": True,
