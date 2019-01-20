@@ -28,7 +28,8 @@ def add():
 
 @app.route('/log', methods=['POST'])
 def test():
-    logger.logRequest(request.json)
+    req = request.get_json(silent=True, force=True)
+    logger.logRequest(req)
     return jsonify(success=True)
 
 if __name__ == '__main__':
