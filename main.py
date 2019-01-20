@@ -1,7 +1,7 @@
 import datetime
 
 from flask import Flask, jsonify, request, abort
-import engine
+import engine, logger
 
 app = Flask(__name__)
 
@@ -24,6 +24,11 @@ def add():
     if not request or not request.json:
         abort(400)
     engine.addRecord(request.json)
+    return jsonify(success=True)
+
+@app.route('/log', methods=['POST'])
+def test():
+    logger.logRequest(request.json)
     return jsonify(success=True)
 
 if __name__ == '__main__':
