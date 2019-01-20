@@ -16,8 +16,9 @@ def search():
     if not request or not request.json:
         abort(400)
     searchQuery = request.json
-    results = engine.getResults(searchQuery)
-    return jsonify(results)
+    # results = engine.getResults(searchQuery)
+    # return jsonify(results)
+    return jsonify(engine.constructWebhookResponse())
 
 @app.route('/addJob', methods=['POST'])
 def add():
@@ -28,9 +29,14 @@ def add():
 
 @app.route('/log', methods=['POST'])
 def test():
-    req = request.get_json(silent=True, force=True)
-    logger.logRequest(req)
+    try:
+        req = request.get_json(silent=True, force=True)
+        print (req)
+        logger.logRequest(req)
+    except Exception as e: 
+        print(e)
     return jsonify(success=True)
+
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
