@@ -23,17 +23,18 @@ def addRecord(record):
 
 def parseWebhookRequest(req):
     # code goes here
+    s = ''
 
 def constructWebhookResponse():
     results = getResults('')
     recommendations = []
     for each in results:
         obj = {
-            "optionInfo": {"key": each[""] },
+            "optionInfo": {"key": each["company"] },
             "title": each["company"],
             "description": each["uri"]
         }
-        recommendations.add(obj)
+        recommendations.append(obj)
         
     response = {
         "payload": {
