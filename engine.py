@@ -94,12 +94,18 @@ def constructWebhookResponse(results):
             "google":{  
                 "expectUserResponse":True,
                 "richResponse":{  
-                    "items":[  
-                    {  
-                        "carouselBrowse":{  
-                            "items":recommendations
+                    "items":[
+                        {
+                            "simpleResponse": {
+                                "textToSpeech": "Alright! Here are a few web jobs you might want to check out."
+                            }
+                        },
+
+                        {  
+                            "carouselBrowse":{  
+                                "items":recommendations
+                            }
                         }
-                    }
                     ]
                 },
                 "userStorage":"{\"data\":{}}"
