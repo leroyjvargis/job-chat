@@ -15,10 +15,9 @@ def root():
 def search():
     if not request or not request.json:
         abort(400)
-    searchQuery = request.json
-    # results = engine.getResults(searchQuery)
-    # return jsonify(results)
-    return jsonify(engine.constructWebhookResponse())
+    searchQuery = engine.parseWebhookRequest(request.json)
+    results = engine.getResults(searchQuery)
+    return jsonify(results)
 
 @app.route('/addJob', methods=['POST'])
 def add():
@@ -28,7 +27,7 @@ def add():
     return jsonify(success=True)
 
 @app.route('/log', methods=['POST'])
-def test():
+def log():
     try:
         req = request.get_json(silent=True, force=True)
         print (req)
