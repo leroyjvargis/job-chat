@@ -46,9 +46,12 @@ def constructWebhookResponse(results):
         print (each['company'], each['similarityScore'])
     for each in results:
         obj = {
-            #"optionInfo": {"key": each["company"] },
+            "optionInfo": {"key": each["company"]+each["role"] },
             "title": each["company"],
-            "description": each["uri"]
+            "description": each["role"],
+            "openUrlAction": {
+                    "url": each["uri"]
+                  }
         }
         recommendations.append(obj)
         
@@ -57,12 +60,12 @@ def constructWebhookResponse(results):
         "fulfillmentMessages": [
             {
             "card": {
-                "title": "card title",
-                "subtitle": "card text",
+                "title": "Recommendations",
+                "subtitle": "Here are the recommendations based on your profile",
                 "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
                 "buttons": [
                 {
-                    "text": "button text",
+                    "text": "View recommendations",
                     "postback": "https://assistant.google.com/"
                 }
                 ]
@@ -74,23 +77,24 @@ def constructWebhookResponse(results):
             "google": {
                 "expectUserResponse": True,
                 "richResponse": {
-                "items": [
-                    {
-                    "simpleResponse": {
-                        "textToSpeech": "These are your top 5 recommendations"
-                    }
-                    }
-                ]
+                    "items": [
+                        {
+                        "simpleResponse": {
+                            "textToSpeech": "These are your top 5 recommendations",
+                            "displayText":  "These are your top 5 recommendations"
+                        }
+                        }
+                    ]
                 },
                 "systemIntent": {
-                "intent": "actions.intent.OPTION",
-                "data": {
-                    "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
-                    "listSelect": {
-                    "title": "Jobs",
-                    "items": recommendations
+                    "intent": "actions.intent.OPTION",
+                    "data": {
+                        "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
+                        "listSelect": {
+                        "title": "Jobs",
+                        "items": recommendations
+                        }
                     }
-                }
                 }
             }
         }

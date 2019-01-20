@@ -1,0 +1,101 @@
+<html>
+
+<head>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/bulma.min.css') }}">
+
+</head>
+
+<body>
+    <section style="background-color: #375a7f;">
+        <div class="hero-body">
+            <div class="container">
+                <h2 class="subtitle has-text-white">Howdy</h2>
+                <h1 class="title is-1 has-text-light">Welcome to the Job Portal</h1>
+                <h2 class="subtitle is-2 has-text-light">Add jobs to the job chatbox assistant app</h2>
+                <a href="#" rel="noopener noreferrer" class="button is-primary is-rounded is-medium"><span>Get App
+                        <span style="font-size:undefinedrem" role="img" aria-label="emoji">🤝</span></span></a>
+            </div>
+        </div>
+    </section>
+    <section>
+
+    <section class="section" id="form">
+        <div class="container">
+            <h1 class="title"> Add Job </h1>
+            <hr>
+            <div class="columns">
+                <div class="column">
+                    <form name="posting" action="/addJob" method="POST" enctype='application/json'>
+                        <div class="field">
+                            <label class="label">Company</label>
+                            <p class="control">
+                                <input class="input" id="company"  name="company" type="text" placeholder="Enter the company name">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Role</label>
+                            <p class="control">
+                                <input class="input" id="role" name="role" type="text" placeholder="Role">
+                            </p>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Education</label>
+                            <p class="control">
+                                <input class="input" id="education" name="education" type="text" placeholder="Master's or Bachelor's ...">
+                            </p>
+                        </div>
+                    
+                        <div class="field">
+                            <label class="label">Job Type</label>
+                            <p class="control">
+                                <span class="select">
+                                    <select id="jobType" name="jobType">
+                                        <option disabled selected>--Choose--</option>
+                                        <option>Internship</option>
+                                        <option>Part-time</option>
+                                        <option>Full-time</option>
+                                    </select>
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Years of Experience</label>
+                            <p class="control">
+                                <input class="input" name="experience" id="experience" type="number" min="0" placeholder="# of years">
+                            </p>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Web link</label>
+                            <p class="control">
+                                <input class="input" id="uri" name="uri" type="url" placeholder="URL">
+                            </p>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Job Description</label>
+                            <p class="control">
+                                <textarea class="textarea" name="description" id="description" placeholder="The description"></textarea>
+                            </p>
+                        </div>
+
+                        <div class="field is-grouped">
+                            <p class="control">
+                                <button class="button is-primary" type="submit">Submit</button>
+                            </p>
+                            <p class="control">
+                                <button class="button is-link" type="reset">Cancel</button>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+    </section>
+    </section>
+    <div class="container">
+            
+        </div>
+</body>
+
+</html>

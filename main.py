@@ -1,6 +1,6 @@
 import datetime
 
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request, abort, render_template
 import engine, logger
 
 app = Flask(__name__)
@@ -11,7 +11,18 @@ def root():
     message = "All your base are belong to us!"
     return jsonify({'message': message})
 
-@app.route('/search', methods=['POST'])
+@app.route('/addJobs', methods=['GET'])
+def addJobsInterface():
+    return render_template('jobs.html')
+
+@app.route('/addJob', methods=['POST'])
+def addJobsInterfaceAPI():
+    if not request or not request.form:
+        abort(400)
+    engine.addRecord(request.form)
+    return render_template('jobs.html')
+
+@app.route('/api/search', methods=['POST'])
 def search():
     if not request or not request.json:
         abort(400)
@@ -19,14 +30,14 @@ def search():
     results = engine.getResults(searchQuery)
     return jsonify(results)
 
-@app.route('/addJob', methods=['POST'])
+@app.route('/api/addJob', methods=['POST'])
 def add():
     if not request or not request.json:
         abort(400)
     engine.addRecord(request.json)
     return jsonify(success=True)
 
-@app.route('/log', methods=['POST'])
+@app.route('/api/log', methods=['POST'])
 def log():
     try:
         req = request.get_json(silent=True, force=True)
