@@ -63,7 +63,7 @@ def constructWebhookResponse(results):
         print (each['company'], each['similarityScore'])
     for each in results:
         obj = {
-            "optionInfo": {"key": each["company"]+each["role"] },
+            #"optionInfo": {"key": each["company"]+each["role"] },
             "title": each["company"],
             "description": each["role"],
             "openUrlAction": {
@@ -91,29 +91,34 @@ def constructWebhookResponse(results):
         ],
         "source": "hackaz-229118.appspot.com/",
         "payload": {
-            "google": {
+            "google":{
                 "expectUserResponse": True,
-                "richResponse": {
-                    "items": [
-                        {
-                        "simpleResponse": {
-                            "textToSpeech": "These are your top 5 recommendations",
-                            "displayText":  "These are your top 5 recommendations"
+                "expectedInputs": [
+                    {
+                    "inputPrompt": {
+                        "richInitialPrompt": {
+                        "items": [
+                            {
+                            "simpleResponse": {
+                                "textToSpeech": "Alright! Here are a few jobs you might want to check out."
+                                }
+                            },
+                            {
+                            "carouselBrowse": {
+                                "items": recommendations
+                            }
+                            }
+                        ]
                         }
+                    },
+                    "possibleIntents": [
+                        {
+                        "intent": "assistant.intent.action.TEXT"
                         }
                     ]
-                },
-                "systemIntent": {
-                    "intent": "actions.intent.OPTION",
-                    "data": {
-                        "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
-                        "listSelect": {
-                        "title": "Jobs",
-                        "items": recommendations
-                        }
                     }
+                ]
                 }
-            }
         }
     }
 
