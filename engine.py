@@ -31,12 +31,29 @@ def calcExp(years):
         return "fresher"
 
 def parseWebhookRequest(req):
+    # toFind = ["job_role", "experience", "skills.original", "educationLevel.original"]
+    # stringified = str(req)
+    # for each in toFind:
+    #     stringified.index(each)
+
+    ops = {"job_role": "hasnotyetbeenadded", "experience": 0, "skills.original": "hasnotyetbeenadded", "educationLevel.original": "hasnotyetbeenadded", }
+    for each in req["queryResult"]["outputContexts"]:
+        for key, value in each["parameters"].items():
+            if key == "job_role" and ops["job_role"] == "hasnotyetbeenadded":
+                ops[key] = value
+            if key == "experience" and ops["experience"] == "hasnotyetbeenadded":
+                ops[key] = value
+            if key == "skills.original" and ops["skills.original"] == "hasnotyetbeenadded":
+                ops[key] = value
+            if key == "educationLevel.original" and ops["educationLevel.original"] == "hasnotyetbeenadded":
+                ops[key] = value
+
     parsed = {
-        "role": req["queryResult"]["outputContexts"][0]["parameters"]["job_role"],
-        "jobType": req["queryResult"]["outputContexts"][0]["parameters"]["job_role"],
-        "experience": calcExp(req["queryResult"]["outputContexts"][0]["parameters"]["experience"]),
-        "skills": req["queryResult"]["outputContexts"][0]["parameters"]["skills.original"],
-        "education": req["queryResult"]["outputContexts"][0]["parameters"]["educationLevel.original"]
+        "role": ops["job_role"],
+        "jobType": ops["job_role"],
+        "experience": calcExp(ops["experience"]),
+        "skills": ops["skills.original"],
+        "education": ops["educationLevel.original"]
     }
     return parsed
 
