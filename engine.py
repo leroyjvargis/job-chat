@@ -23,9 +23,9 @@ def addRecord(record):
 ### Webhook
 
 def calcExp(years):
-    if years > 8:
+    if int(years) > 8:
         return "senior"
-    elif years > 3:
+    elif int(years) > 3:
         return "medium"
     else:
         return "fresher"
