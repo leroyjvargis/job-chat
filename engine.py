@@ -93,6 +93,25 @@ def constructWebhookResponse(results):
         "payload": {
             "google":{
                 "expectUserResponse": True,
+                 "richResponse": {
+                    "items": [
+                        {
+                        "simpleResponse": {
+                            "textToSpeech": "These are your top 5 recommendations",
+                            "displayText":  "These are your top 5 recommendations"
+                        }
+                        }
+                    ]
+                },
+                "systemIntent": {
+                    "intent": "actions.intent.OPTION",
+                    "data": {
+                        "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
+                        "carouselBrowse": {
+                            "items": recommendations
+                        }
+                    }
+                },
                 "expectedInputs": [
                     {
                     "inputPrompt": {
